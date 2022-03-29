@@ -51,3 +51,7 @@ async function fetchAndDisplayShoppingList() {
   }
 
 }
+deleteButton.addEventListener('click', async () => {
+  await deleteShoppingList();
+  await fetchAndDisplayShoppingList();
+});
