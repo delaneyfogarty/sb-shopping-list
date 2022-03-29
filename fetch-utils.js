@@ -37,7 +37,7 @@ export async function buyListItem(id) {
     .update({ is_bought: true })
     .match({ id });
 
-  return response.body;
+    return response.body;
 }
 
 
@@ -53,7 +53,7 @@ export function checkAuth() {
 
 export function redirectIfLoggedIn() {
   if (getUser()) {
-    location.replace('./other-page');
+    location.replace('./shopping-list');
   }
 }
 

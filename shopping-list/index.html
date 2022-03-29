@@ -13,28 +13,31 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="shopping-list-body">
     <header>
-        <div class="gutter-right logo">
-            <img src="../assets/big-logo.png" />
-        </div>
+    My Supermarket List
     </header>
     <button id="logout">Logout</button>
     <main>
         <form class="shopping-list-form">
-            <input type="number" name="amount">
+            What do you need from the supermarket?
             <input type="name" name="name">
+            How many of those do you need?
+            <input type="number" name="amount">
             <button class="add-item-button">Add Item</button>
         </form>
         <section class="shopping-list">
 
         </section>
-        <div>
+        <section class="bought-items">
+
+        </section>
+        <div class="delete-list">
             <button class="delete-list-button">Delete List</button>
         </div>
     </main>
     <footer>
-        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
+        <div class="copy gutter-right"></div>
     </footer>
     <script type="module" src="./shopping-list.js"></script>
 </body>

@@ -3,10 +3,13 @@ import { renderItem } from '../render-utils.js';
 
 checkAuth();
 
+const boughtItemsArray = [];
+
 const logoutButton = document.getElementById('logout');
 const listEl = document.querySelector('.shopping-list');
 const listForm = document.querySelector('.shopping-list-form');
 const deleteButton = document.querySelector('.delete-list-button');
+const boughtItemsEl = document.querySelector('.bought-items');
 
 logoutButton.addEventListener('click', () => {
   logout();
@@ -40,17 +43,32 @@ async function fetchAndDisplayShoppingList() {
     const itemEl = renderItem(item);
 
     if (item.is_bought) {
-      itemEl.classList.add('is_bought');
+      itemEl.classList.add('is-bought');
     } else {
       itemEl.addEventListener('click', async () => {
         await buyListItem(item.id);
-        fetchAndDisplayShoppingList;
+        fetchAndDisplayShoppingList();
+        displayBoughtItemsInCart();
       });
+
     }
     listEl.append(itemEl);
   }
 
 }
+
+function displayBoughtItemsInCart() {
+  boughtItemsEl.textContent = '';
+
+  for (let boughtItem of boughtItemsArray) {
+    const x = renderItem(boughtItem);
+    x.classList.add('bought-item-array');
+    boughtItemsEl.append(x);
+  }
+
+}
+
+
 deleteButton.addEventListener('click', async () => {
   await deleteShoppingList();
   await fetchAndDisplayShoppingList();
