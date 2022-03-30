@@ -3,13 +3,18 @@ import { renderItem } from '../render-utils.js';
 
 checkAuth();
 
-const boughtItemsArray = [];
 
 const logoutButton = document.getElementById('logout');
 const listEl = document.querySelector('.shopping-list');
 const listForm = document.querySelector('.shopping-list-form');
 const deleteButton = document.querySelector('.delete-list-button');
-const boughtItemsEl = document.querySelector('.bought-items');
+// const boughtItemsEl = document.querySelector('.bought-items');
+// const emptyCartButton = document.querySelector('.empty-cart-button');
+// const loadingSpinner = document.querySelector('.loading-spinner');
+
+// function toggleLoadingSpinner() {
+//   loadingSpinner.classList.toggle('invisible');
+// }
 
 logoutButton.addEventListener('click', () => {
   logout();
@@ -35,6 +40,7 @@ listForm.addEventListener('submit', async (e) => {
 });
 
 async function fetchAndDisplayShoppingList() {
+  // toggleLoadingSpinner();
   listEl.textContent = '';
 
   const listData = await getShoppingList();
@@ -48,28 +54,20 @@ async function fetchAndDisplayShoppingList() {
       itemEl.addEventListener('click', async () => {
         await buyListItem(item.id);
         fetchAndDisplayShoppingList();
-        displayBoughtItemsInCart();
       });
-
     }
     listEl.append(itemEl);
   }
-
+  // toggleLoadingSpinner();
 }
 
-function displayBoughtItemsInCart() {
-  boughtItemsEl.textContent = '';
-
-  for (let boughtItem of boughtItemsArray) {
-    const x = renderItem(boughtItem);
-    x.classList.add('bought-item-array');
-    boughtItemsEl.append(x);
-  }
-
-}
 
 
 deleteButton.addEventListener('click', async () => {
   await deleteShoppingList();
   await fetchAndDisplayShoppingList();
 });
+
+// emptyCartButton.addEventListener('click', async () => {
+//   boughtItemsEl.textContent = '';
+// });

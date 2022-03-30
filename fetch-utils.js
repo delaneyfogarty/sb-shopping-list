@@ -37,7 +37,7 @@ export async function buyListItem(id) {
     .update({ is_bought: true })
     .match({ id });
 
-    return response.body;
+  return response.body;
 }
 
 
